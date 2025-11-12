@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-ajsel0h^7uupx0w+&i^)$ov#qe6^_6j0r%9a^$#u(-lq%kho^q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -67,6 +67,14 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://cerulean-sundae-afb619.netlify.app",  # your frontend Netlify URL
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://cerulean-sundae-afb619.netlify.app",
+]
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -154,6 +162,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
