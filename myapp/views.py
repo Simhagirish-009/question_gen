@@ -9,7 +9,9 @@ from django.shortcuts import get_object_or_404
 
 from openai import OpenAI
 from django.conf import settings
+import openai
 
+openai.api_key = settings.OPENAI_API_KEY
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 from .serializers import (
@@ -67,6 +69,8 @@ class ContextCreateView(APIView):
     def post(self, request):
         serializer = ContextSerializer(data=request.data)
         if serializer.is_valid():
+            print("✅ OpenAI key loaded:", bool(openai.api_key))
+
             # Save the context with the logged-in user
             context = serializer.save(user=request.user)
             # -------------------------------------------
